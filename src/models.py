@@ -47,8 +47,14 @@ class Species(db.Model):
     characters: Mapped[List["Character"]] = relationship(back_populates="author")
     planets: Mapped[List["Planet"]] = relationship(back_populates="author")
 
-class Favorites(db.Model):
+class Favorite_Characters(db.Model):
     user: Mapped[int] = mapped_column(primary_key=True)
     favorite_characters: Mapped[int] = mapped_column(ForeignKey("user.favorite_characters"))
+
+class Favorite_Planets(db.Model):
+    user: Mapped[int] = mapped_column(primary_key=True)
     favorite_planets: Mapped[int] = mapped_column(ForeignKey("user.favorite_planets"))
+
+class Favorite_Species(db.Model):
+    user: Mapped[int] = mapped_column(primary_key=True)
     favorite_species: Mapped[int] = mapped_column(ForeignKey("user.favorite_species"))
