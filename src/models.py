@@ -24,7 +24,7 @@ class User(db.Model):
 class Character(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
-    weight: Mapped[int] = mapped_column(nullable=False)
+    mass: Mapped[int] = mapped_column(nullable=False)
     height: Mapped[int] = mapped_column(nullable=False)
     age: Mapped[int] = mapped_column(nullable=False)
     description: Mapped[str] = mapped_column(String(500), unique=True, nullable=False)
