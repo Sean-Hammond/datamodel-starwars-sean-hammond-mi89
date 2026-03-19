@@ -33,6 +33,9 @@ class Character(db.Model):
 
 class Planet(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
+    mass: Mapped[int] = mapped_column(nullable=False)
+    circumference: Mapped[int] = mapped_column(nullable=False)
     characters: Mapped[List["Character"]] = relationship(back_populates="author")
     description: Mapped[str] = mapped_column(String(500), unique=True, nullable=False)
     users_who_favorite: Mapped[List["User"]] = relationship(back_populates="author")
