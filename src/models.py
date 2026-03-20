@@ -38,6 +38,7 @@ class Character(db.Model):
     planet_id: Mapped[int] = mapped_column(ForeignKey("planet.id"))
     users_who_favorite: Mapped[List["Favorite_Character"]] = relationship(
         back_populates="character")
+    planet: Mapped["Planet"] = relationship(back_populates="characters")
 
 
 class Planet(db.Model):
@@ -46,11 +47,11 @@ class Planet(db.Model):
     mass: Mapped[int] = mapped_column(nullable=False)
     circumference: Mapped[int] = mapped_column(nullable=False)
     characters: Mapped[List["Character"]] = relationship(
-        back_populates="author")
+        back_populates="planet")
     description: Mapped[str] = mapped_column(
         String(500), unique=True, nullable=False)
-    users_who_favorite: Mapped[List["User"]
-                               ] = relationship(back_populates="author")
+    users_who_favorite: Mapped[List["Favorite_Planet"]
+                               ] = relationship(back_populates="planet")
 
 
 class Species(db.Model):
@@ -61,8 +62,8 @@ class Species(db.Model):
     characters: Mapped[List["Character"]] = relationship(
         back_populates="author")
     planets: Mapped[List["Planet"]] = relationship(back_populates="author")
-    users_who_favorite: Mapped[List["User"]
-                               ] = relationship(back_populates="author")
+    users_who_favorite: Mapped[List["Favorite_Species"]
+                               ] = relationship(back_populates="species")
 
 
 class Favorite_Character(db.Model):
